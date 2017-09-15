@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--底部弹出动画item-->
+    <declare-styleable name="BottomAnimatorItem" >
+        <attr name="desc" format="string"/>
+        <attr name="icon" format="reference"/>
+        <attr name="isImgBackground" format="boolean"/>
+        <attr name="ImgBackgroundDrawable" format="reference"/>
+    </declare-styleable>
+</resources>
