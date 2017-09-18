@@ -7,6 +7,7 @@ import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.content.Context;
 import android.view.Gravity;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewStub;
@@ -19,7 +20,7 @@ import android.widget.LinearLayout;
  * date 2017/9/4  下午5:19
  */
 
-public class BottomPopuWindow extends View {
+public class BottomPopuWindow extends View implements View.OnTouchListener{
     private View mRootView;
     private View fullMaskView;
     private ViewStub mViewStub;
@@ -30,7 +31,6 @@ public class BottomPopuWindow extends View {
     private int mHeight;
     private int duration = 300;
     private Context mContext;
-    private setaddStatus addstatus;
     private String[] Tag = {"文字", "图片", "视频"};
     private int[] TagBgRes = {R.drawable.text_normal, R.drawable.pic_normal, R.drawable.vedio_normal};
     public BottomPopuWindow(Context mContext) {
@@ -50,7 +50,8 @@ public class BottomPopuWindow extends View {
         addItem(container);
         ((ViewGroup)((Activity)mContext).getWindow().getDecorView()).addView(mRootView);
         initHeight();
-        addstatus = (setaddStatus) mContext;
+        /*默认消费所有触摸事件，防止传递到底层布局*/
+        mRootView.setOnTouchListener(this);
 
     }
 
@@ -215,9 +216,12 @@ public class BottomPopuWindow extends View {
         public void onClick(View v) {
             if (position == 3) {
                 hide();
-                addstatus.enable(true);
             }
         }
     }
 
+    @Override
+    public boolean onTouch(View v, MotionEvent event) {
+        return true;
+    }
 }

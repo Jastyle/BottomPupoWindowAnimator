@@ -2,6 +2,7 @@ package com.jastyle.bottompupowindowanimator;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -11,7 +12,7 @@ import android.widget.TextView;
 
 import java.util.Map;
 
-public class MainActivity extends AppCompatActivity implements setaddStatus{
+public class MainActivity extends AppCompatActivity{
     private LinearLayout container;
     private Button iv;
     private BottomPopuWindow bpw;
@@ -34,16 +35,13 @@ public class MainActivity extends AppCompatActivity implements setaddStatus{
         iv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                bpw.show();
-                iv.setEnabled(false);
+                if (!bpw.isShowing) {
+                    bpw.show();
+                }
             }
         });
     }
 
-    @Override
-    public void enable(boolean isEnable) {
-        if (isEnable) {
-            iv.setEnabled(isEnable);
-        }
-    }
+
+
 }
